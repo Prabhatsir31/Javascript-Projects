@@ -69,5 +69,4 @@ searchBox.addEventListener(
     /**
      *   <a class="repo" href="#" target="_blank">Repo 1</a>
                         <a class="repo" href="#" target="_blank">Repo 2</a>
-                        <a cla
      */
