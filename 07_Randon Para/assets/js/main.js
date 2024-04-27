@@ -12,7 +12,6 @@ const numberInput = document.getElementById("numbers")
 const symbolInput = document.getElementById("symbols")
 
 
-
 const getRandomData = (dataSet) => {
     return dataSet[Math.floor(Math.random() * dataSet.length)]
 }
