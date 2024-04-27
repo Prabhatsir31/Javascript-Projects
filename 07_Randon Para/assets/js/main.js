@@ -35,7 +35,6 @@ const generatePassword = (password = "") => {
     passBox.innerText = truncateString(password, totalChar.value);
 }
 
-
 generatePassword();
 
 document.getElementById("btn").addEventListener(
