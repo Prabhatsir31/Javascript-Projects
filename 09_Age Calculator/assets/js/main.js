@@ -16,5 +16,6 @@ function calculateAge(){
   let y2 = today.getFullYear();
 
   let d3, m3, y3;
-  
+
+  y3 = y2 - y1;
 }
