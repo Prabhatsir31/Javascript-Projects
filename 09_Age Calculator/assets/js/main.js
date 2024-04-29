@@ -19,11 +19,11 @@ function calculateAge(){
 
   y3 = y2 - y1;
 
-   if(m2 >= m1)
-    {
-        m3 = m2 - m1;
-    }else{
+  if(m2 >= m1)
+   {
+      m3 = m2 - m1;
+   }else{
         y3--;
         m3 = 12 + m2 - m1;
-    }
+   }
 }
