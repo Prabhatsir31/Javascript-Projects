@@ -48,3 +48,15 @@
     border-radius: 5px;
     position: relative;
 }
+.input-box button
+{
+    border: 0;
+    outline: 0;
+    padding: 15px 30px;
+    border-radius: 25px 0 25px;
+    background-color: #ffff76;
+    font-weight: 500;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+}
