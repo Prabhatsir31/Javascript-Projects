@@ -28,3 +28,12 @@
 {
     color: #ffff76;
 }
+.input-box
+{
+    margin: 40px 0;
+    padding: 35px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+}
