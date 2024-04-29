@@ -8,4 +8,6 @@ function calculateAge(){
   let d1 = birthDate.getDate();
   let m1 = birthDate.getMonth() + 1;
   let y1 = birthDate.getFullYear();
+
+  let today = new Date();
 }
