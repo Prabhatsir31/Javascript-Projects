@@ -37,3 +37,14 @@
     display: flex;
     align-items: center;
 }
+.input-box input
+{
+    flex: 1;
+    margin-right: 20px;
+    padding: 14px 20px;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    border-radius: 5px;
+    position: relative;
+}
