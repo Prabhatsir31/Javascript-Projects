@@ -40,3 +40,8 @@ body
     left: 50%;
     transform: translateX(-50%);
 }
+.quote-box blockquote
+{
+    font-size: 26px;
+    min-height: 110px;
+}
