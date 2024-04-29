@@ -5,9 +5,7 @@
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
- 100%;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #4203a9, #90bafc);
+  background: linear-gradient(135deg, #4203a9, #90bafc);
     color: #fff;
     padding: 10px;
 }
