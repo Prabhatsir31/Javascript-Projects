@@ -18,4 +18,5 @@ function calculateAge(){
   let d3, m3, y3;
 
   y3 = y2 - y1;
+  
 }
