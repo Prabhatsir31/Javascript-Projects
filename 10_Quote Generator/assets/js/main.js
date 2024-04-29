@@ -1,7 +1,4 @@
 
-
-function calculateAge(){
-    let birthDate = new Date(userInput.value);
      
     let d1 = birthDate.getDate();
     let m1 = birthDate.getMonth() + 1;
