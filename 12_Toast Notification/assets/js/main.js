@@ -1,6 +1,6 @@
 let toastBox = document.getElementById('toastBox');
 let successMsg = '<i class="fas fa-check-circle"></i> Successfully Submitted';
-let errorMsg = '<i class="fa-solid fa-circle-xmark"></i> Please fix the error!';
+let errorMsg = '<i class="fas fa-circle-xmark"></i> Please fix the error!';
 let invalidMsg = '<i class="fas fa-exclamation"></i> Invalid input, check again';
 
 function showToast(msg) {
