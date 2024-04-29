@@ -6,11 +6,3 @@
   box-sizing: border-box;
 }
 
-.input-box input::-webkit-calender-indicator
-{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: auto;
-    height: auto;
