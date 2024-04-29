@@ -22,3 +22,9 @@ body
     text-align: center;
     box-shadow: 0 10px 20px 0px rgba(0, 0, 0, 0.15);
 }
+.quote-box h2
+{
+    font-size: 32px;
+    margin-bottom: 40px;
+    position: relative;
+}
