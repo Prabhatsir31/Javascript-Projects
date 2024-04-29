@@ -12,3 +12,5 @@ async function getquote(url){
     author.innerHTML = data.author;
     // tags.innerHTML = data.tags;
 }
+
+getquote(api_url);
