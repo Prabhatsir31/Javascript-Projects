@@ -44,7 +44,7 @@ let allMusic = [
   {
     name: "Harley Bird - Home",
     artist: "Jordan Schor",
-    img: "music-8",
+    img: "music-7",
     src: "music-8"
   },
   {
