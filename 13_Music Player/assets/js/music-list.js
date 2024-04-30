@@ -110,8 +110,8 @@ let allMusic = [
   {
     name: "Jim - Sun Goes Down",
     artist: "Jim Yosef x Roy",
-    img: "music-5",
-    src: "music-5"
+    img: "music-19",
+    src: "music-19"
   },
   {
     name: "Lost Sky - Vision NCS",
