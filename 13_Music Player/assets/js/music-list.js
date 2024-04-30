@@ -92,37 +92,37 @@ let allMusic = [
   {
     name: "Ikson Anywhere – Ikson",
     artist: "Audio Library",
-    img: "music-16",
+    img: "music-7",
     src: "music-16"
   },
   {
     name: "Beauz & Jvna - Crazy",
     artist: "Beauz & Jvna",
-    img: "music-17",
+    img: "music-7",
     src: "music-17"
   },
   {
     name: "Hardwind - Want Me",
     artist: "Mike Archangelo",
-    img: "music-18",
+    img: "music-7",
     src: "music-18"
   },
   {
     name: "Jim - Sun Goes Down",
     artist: "Jim Yosef x Roy",
-    img: "music-19",
+    img: "music-7",
     src: "music-19"
   },
   {
     name: "Lost Sky - Vision NCS",
     artist: "NCS Release",
-    img: "music-20",
+    img: "music-7",
     src: "music-20"
   },
   {
     name: "Pehle Bhi Mein",
     artist: "Arjit Singh",
-    img: "music-21",
+    img: "music-7",
     src: "music-21"
   },
 
