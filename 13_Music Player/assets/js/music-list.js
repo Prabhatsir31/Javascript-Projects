@@ -56,13 +56,13 @@ let allMusic = [
   {
     name: "Beauz & Jvna - Crazy",
     artist: "Beauz & Jvna",
-    img: "music-10",
+    img: "music-7",
     src: "music-10"
   },
   {
     name: "Hardwind - Want Me",
     artist: "Mike Archangelo",
-    img: "music-11",
+    img: "music-7",
     src: "music-11"
   },
   {
