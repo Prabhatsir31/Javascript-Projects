@@ -74,7 +74,7 @@ let allMusic = [
   {
     name: "Lost Sky - Vision NCS",
     artist: "NCS Release",
-    img: "music-13",
+    img: "music-7",
     src: "music-13"
   },
   {
