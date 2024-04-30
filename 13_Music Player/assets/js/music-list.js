@@ -122,8 +122,8 @@ let allMusic = [
   {
     name: "Pehle Bhi Mein",
     artist: "Arjit Singh",
-    img: "music-7",
-    src: "music-7"
+    img: "music-21",
+    src: "music-21"
   },
 
 ];
