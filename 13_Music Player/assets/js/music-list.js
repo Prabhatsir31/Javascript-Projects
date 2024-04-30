@@ -50,7 +50,7 @@ let allMusic = [
   {
     name: "Ikson Anywhere – Ikson",
     artist: "Audio Library",
-    img: "music-9",
+    img: "music-7",
     src: "music-9"
   },
   {
