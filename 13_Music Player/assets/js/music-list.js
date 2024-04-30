@@ -80,7 +80,7 @@ let allMusic = [
   {
     name: "Pehle Bhi Mein",
     artist: "Arjit Singh",
-    img: "music-14",
+    img: "music-7",
     src: "music-14"
   },
   {
