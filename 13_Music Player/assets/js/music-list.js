@@ -20,7 +20,7 @@ let allMusic = [
   {
     name: "Hardwind - Want Me",
     artist: "Mike Archangelo",
-    img: "arjit.webp",
+    img: "music-4",
     src: "music-4"
   },
   {
