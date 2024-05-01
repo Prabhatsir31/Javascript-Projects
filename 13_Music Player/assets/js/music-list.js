@@ -30,8 +30,8 @@ let allMusic = [
     src: "music-5"
   },
   {
-    name: "Hamari Adhuri Kahani - Vision NCS",
-    artist: "NCS Release",
+    name: "Hamari Adhuri Kahani - Hamari Adhuri Kahani",
+    artist: "Arjit Singh",
     img: "music-6",
     src: "music-6"
   },
