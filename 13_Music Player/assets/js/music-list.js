@@ -13,7 +13,7 @@ let allMusic = [
   },
   {
     name: "Mohabbat Barsa De - Creature 3D",
-    artist: "",
+    artist: "Surveen Chawla",
     img: "music-3",
     src: "music-3"
   },
