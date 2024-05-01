@@ -24,8 +24,8 @@ let allMusic = [
     src: "music-4"
   },
   {
-    name: "Ik_Vaari_Aa - Raabta",
-    artist: "Jim Yosef x Roy",
+    name: "Ik Vaari Aa - Raabta",
+    artist: "Pritam, Arijit Singh",
     img: "music-5",
     src: "music-5"
   },
