@@ -12,8 +12,8 @@ let allMusic = [
     src: "music-2"
   },
   {
-    name: "Mohabbat Barsa De - Crazy",
-    artist: "Beauz & Jvna",
+    name: "Mohabbat Barsa De - Creature 3D",
+    artist: "",
     img: "music-3",
     src: "music-3"
   },
