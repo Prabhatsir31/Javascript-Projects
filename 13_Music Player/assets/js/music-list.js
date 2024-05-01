@@ -36,7 +36,7 @@ let allMusic = [
     src: "music-6"
   },
   {
-    name: "Pehle Bhi Mein",
+    name: "Pehle Bhi Mein - Animal",
     artist: "Arjit Singh",
     img: "music-7",
     src: "music-7"
