@@ -7,7 +7,7 @@ let allMusic = [
   },
   {
     name: "Suno_na_Sangemarmar – Youngistan",
-    artist: "Audio Library",
+    artist: "Arjit Singh",
     img: "music-2",
     src: "music-2"
   },
