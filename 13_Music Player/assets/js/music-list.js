@@ -24,7 +24,7 @@ let allMusic = [
     src: "music-4"
   },
   {
-    name: "Jim - Sun Goes Down",
+    name: "Ik_Vaari_Aa - Raabta",
     artist: "Jim Yosef x Roy",
     img: "music-5",
     src: "music-5"
