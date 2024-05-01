@@ -19,7 +19,7 @@ let allMusic = [
   },
   {
     name: "Bekhayali - Want Me",
-    artist: "Mike Archangelo",
+    artist: "Arjit Singh",
     img: "music-4",
     src: "music-4"
   },
