@@ -18,7 +18,7 @@ let allMusic = [
     src: "music-3"
   },
   {
-    name: "Bekhayali - Want Me",
+    name: "Bekhayali - Kabir Singh",
     artist: "Arjit Singh",
     img: "music-4",
     src: "music-4"
