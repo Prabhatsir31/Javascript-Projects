@@ -30,7 +30,7 @@ let allMusic = [
     src: "music-5"
   },
   {
-    name: "Lost Sky - Vision NCS",
+    name: "Hamari Adhuri Kahani - Vision NCS",
     artist: "NCS Release",
     img: "music-6",
     src: "music-6"
