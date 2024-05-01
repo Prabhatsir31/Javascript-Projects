@@ -12,7 +12,7 @@ let allMusic = [
     src: "music-2"
   },
   {
-    name: "Beauz & Jvna - Crazy",
+    name: "Mohabbat Barsa De - Crazy",
     artist: "Beauz & Jvna",
     img: "music-3",
     src: "music-3"
