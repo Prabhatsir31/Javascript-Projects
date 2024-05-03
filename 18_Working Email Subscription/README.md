@@ -1,3 +1,4 @@
+<!--
 # Submit a Form to Google Sheets 
 
 #### How to create an HTML form that stores the submitted form data in Google Sheets using plain 'ol JavaScript (ES6), [Google Apps Script](https://developers.google.com/apps-script/), [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
@@ -177,4 +178,4 @@ Please [create a new issue](https://github.com/jamiewilson/form-to-google-sheet/
 - [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
 - [HTML `<form>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 - [Document.forms](https://developer.mozilla.org/en-US/docs/Web/API/Document/forms)
-- [Sending forms through JavaScript](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_forms_through_JavaScript)
+- [Sending forms through JavaScript](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_forms_through_JavaScript) -->
