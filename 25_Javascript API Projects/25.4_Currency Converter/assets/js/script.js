@@ -1,43 +1,56 @@
-const form = document.querySelector('form');
-const resultDiv = document.querySelector('.result');
-
-form.addEventListener('submit', (e) =>{
-    e.preventDefault();
-    getWordInfo(form.elements[0].value);
+// Include api for currency change
+const api = "https://api.exchangerate-api.com/v4/latest/USD";
+ 
+// For selecting different controls
+let search = document.querySelector(".searchBox");
+let convert = document.querySelector(".convert");
+let fromCurrecy = document.querySelector(".from");
+let toCurrecy = document.querySelector(".to");
+let finalValue = document.querySelector(".finalValue");
+let finalAmount = document.getElementById("finalAmount");
+let resultFrom;
+let resultTo;
+let searchValue;
+ 
+// Event when currency is changed
+fromCurrecy.addEventListener('change', (event) => {
+    resultFrom = `${event.target.value}`;
 });
-const getWordInfo = async (word)=>{
-    try
-    {
-        resultDiv.innerHTML = "Fetching Data...";
-        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-        const data = await response.json();
-        let definitions = data[0].meanings[0].definitions[0];
-
-        resultDiv.innerHTML = `
-            <h2><strong>Word:</strong> ${data[0].word}</h2>
-            <p class="partOfSpeech">${data[0].meanings[0].partOfSpeech}</p>
-            <p><strong>Meaning:</strong> ${definitions.definition === undefined ? "Not Found" : definitions.definition}</p>
-            <p><strong>Example:</strong> ${definitions.example === undefined ? "Not Found" : definitions.example}</p>
-            <p><strong>Antoms:</strong></p>
-            `;
-        
-        // Fetching Antonyms
-        if(definitions.antonyms.length === 0)
-        {
-            resultDiv.innerHTML += `<span>Not Found</span>`;
-        }
-        else{
-            for(let i=0; i<definitions.antonyms.length; i++)
-            {
-                resultDiv.innerHTML += `<li>${definitions.antonyms[i]}</li>`;
-            }
-        }
-
-        //Adding Read More Button 
-        resultDiv.innerHTML += `<div><a href="${data[0].sourceUrls}" target="_blank">Read More</a></div>`;
-    }
-    catch (error) {
-        resultDiv.innerHTML = `<p>Sorry, the word could not be found</p>`;
-    }    
-        //console.log(data);
+ 
+// Event when currency is changed
+toCurrecy.addEventListener('change', (event) => {
+    resultTo = `${event.target.value}`;
+});
+ 
+search.addEventListener('input', updateValue);
+ 
+// Function for updating value
+function updateValue(e) {
+    searchValue = e.target.value;
 }
+ 
+// When user clicks, it calls function getresults 
+convert.addEventListener("click", getResults);
+ 
+// Function getresults
+function getResults() {
+    fetch(`${api}`)
+        .then(currency => {
+            return currency.json();
+        }).then(displayResults);
+}
+ 
+// Display results after conversion
+function displayResults(currency) {
+    let fromRate = currency.rates[resultFrom];
+    let toRate = currency.rates[resultTo];
+    finalValue.innerHTML =
+        ((toRate / fromRate) * searchValue).toFixed(2);
+    finalAmount.style.display = "block";
+}
+ 
+// When user click on reset button
+function clearVal() {
+    window.location.reload();
+    document.getElementsByClassName("finalValue").innerHTML = "";
+};
