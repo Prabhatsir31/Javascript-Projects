@@ -1,0 +1,240 @@
+@import url("https://fonts.cdnfonts.com/css/thegoodmonolith");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #f0f0f0;
+  font-family: "TheGoodMonolith", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.animation-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  transition: border-color 0.3s ease;
+}
+
+.animation-container:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.animation-title {
+  margin-bottom: 10px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.circle-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  transform-origin: 0% 50%;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Corner decorations */
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: white;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.animation-container:hover .corner {
+  opacity: 1;
+}
+
+.top-left {
+  top: -8px;
+  left: -8px;
+  transition-delay: 0s;
+}
+
+.top-right {
+  top: -8px;
+  right: -8px;
+  transform: rotate(90deg);
+  transition-delay: 0.1s;
+}
+
+.bottom-left {
+  bottom: -8px;
+  left: -8px;
+  transform: rotate(-90deg);
+  transition-delay: 0.2s;
+}
+
+.bottom-right {
+  bottom: -8px;
+  right: -8px;
+  transform: rotate(180deg);
+  transition-delay: 0.3s;
+}
+
+/* Animation keyframes */
+@-webkit-keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes reverseOrbit {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes reverseOrbit {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    transform: scale(0.1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
