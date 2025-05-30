@@ -1,0 +1,1175 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap");
+
+:root {
+  --rotateX: 0deg;
+  --rotateY: 0deg;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Red Hat", monospace;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+#room {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  align-content: center;
+  top: 0;
+  left: 0;
+  background-color: #111;
+}
+
+.room-wrap {
+  margin: 0;
+  padding: 0;
+  perspective: 100vmin;
+  height: 100vh;
+  max-width: 150vh;
+  max-height: 150vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: inline-size;
+  margin: 0 auto;
+  background-color: black;
+  --depth: 50cqw;
+  --cubescale: 20vmin;
+  transition: all 0.4s ease;
+}
+
+.zoomed .room-wrap {
+  transform: scale(1.5);
+  perspective: 125vmin;
+}
+
+.room {
+  width: 100vw;
+  height: 100vh;
+  max-height: 150vw;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
+  transition: transform 0.1s;
+  z-index: 1;
+  pointer-events: none;
+  font-size: 5vmin;
+  user-select: none;
+}
+
+.room > div {
+  position: absolute;
+  pointer-events: auto;
+  display: grid;
+  align-content: center;
+  text-align: center;
+  color: white;
+  transform-style: preserve-3d;
+}
+
+.room .wall {
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  backface-visibility: hidden;
+  background-color: #333;
+  box-shadow: inset 0 0 5vmin rgba(0, 0, 0, 0.5),
+    inset 0 0 15vmin rgba(0, 0, 0, 0.5);
+  border: 3px solid #222;
+  background-image: url("https://assets.codepen.io/5896374/tex-cement-brick-wall.jpg");
+  background-position: bottom center;
+  background-size: auto 115%;
+  transform-style: preserve-3d;
+}
+
+.room > div > b {
+  display: block;
+  margin: 0 auto;
+  padding: 1em;
+  border: 0.15em solid;
+  background: rgba(255, 255, 255, 0.25);
+  text-shadow: 0.1em 0.1em black;
+  position: relative;
+  text-transform: uppercase;
+  align-content: center;
+}
+
+.wall-back,
+.wall-front,
+.wall-top,
+.wall-bottom {
+  width: 100%;
+  height: 100%;
+}
+
+.wall-left,
+.wall-right {
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.wall-back {
+  transform: translateZ(calc(-1 * var(--depth)));
+  background-color: orange;
+}
+
+.wall-front {
+  transform: translateZ(calc(1 * var(--depth))) rotateY(180deg);
+  background-color: red;
+}
+
+.wall-right {
+  left: 0;
+  transform: rotateY(90deg) translateX(calc(-1 * var(--depth)));
+  transform-origin: left;
+  background-color: green;
+}
+
+.wall-left {
+  right: 0;
+  transform: rotateY(-90deg) translateX(calc(1 * var(--depth)));
+  transform-origin: right;
+  background-color: magenta;
+}
+
+.room .wall-top {
+  top: 0;
+  height: calc(2 * var(--depth));
+  transform: rotateX(90deg) translateY(calc(-1 * var(--depth))) rotateY(180deg);
+  transform-origin: top;
+  background-image: url("https://assets.codepen.io/5896374/tex-ceiing.jpg");
+  background-size: 75%;
+  background-repeat: repeat;
+  background-position: top right;
+}
+
+.room .wall-bottom {
+  bottom: 0;
+  height: calc(2 * var(--depth));
+  transform: rotateX(-90deg) translateY(calc(1 * var(--depth))) rotateY(180deg);
+  transform-origin: bottom;
+  background-image: url("https://assets.codepen.io/5896374/tex-metal-floor.jpg");
+  background-size: 75%;
+  background-repeat: repeat;
+  background-position: top right;
+}
+
+.wall-window {
+  mask-image: radial-gradient(
+    circle at center,
+    transparent 15vmin,
+    black 15.1vmin
+  );
+}
+
+.room-wrap.rotating *,
+.room-wrap.rotating {
+  pointer-events: none;
+}
+
+.room-wrap.rotating .room {
+  transition: transform 0.5s ease;
+}
+
+.room-wrap.back-view {
+  --rotateY: 0deg;
+}
+.room-wrap.left-view {
+  --rotateY: 90deg;
+}
+.room-wrap.front-view {
+  --rotateY: 180deg;
+}
+.room-wrap.right-view {
+  --rotateY: 270deg;
+}
+.back-view .wall-front,
+.front-view .wall-back,
+.left-view .wall-right,
+.right-view .wall-left {
+  pointer-events: none;
+}
+
+.room {
+  transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
+}
+
+@media (max-width: 989px) {
+  .room-wrap {
+    overflow: hidden;
+  }
+}
+
+/*-- NAV UI --*/
+
+.room-nav {
+  position: fixed;
+  z-index: 999;
+  bottom: 10px;
+  left: 10px;
+  height: 0;
+  width: calc(100% - 20px);
+}
+
+.room-nav button {
+  position: absolute;
+  bottom: 0;
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.4em;
+  cursor: pointer;
+  font-size: clamp(20px, 8vmin, 36px);
+  transition: all 0.3s ease;
+  background-color: #454954;
+  background-image: linear-gradient(180deg, #0000, #0002),
+    radial-gradient(90% 0.125em at 50% 0.125em, #fff7 25%, #fff0 50%);
+  box-shadow: 0.125em 0.125em 0.25em #0007, 0 -0.05em 0 0.05em #0004,
+    0 0.05em 0 0.05em #fff1, -0.125em 0 0.125em #454954 inset,
+    0 0.125em 0.125em #fff4 inset, 0.125em 0 0.125em #fff4 inset,
+    0 -0.125em 0.125em #454954 inset;
+  color: #e3e4e8;
+  text-shadow: 0 0 0.125em #fff7, 0.05em 0.05em 0 black, 0.075em 0.075em 0 black;
+  border: 0px outset #454954;
+  border-radius: 0.25em;
+}
+
+.room-nav button:hover {
+  filter: brightness(1.2) contrast(1.2);
+}
+
+.room-nav button:not(:active) {
+  border-bottom-width: 0.1em;
+  height: 1.6em;
+}
+
+.room-nav button:active {
+  box-shadow: 0 0 0 #0007, 0 -0.05em 0 0.05em #0004, 0 0.05em 0 0.05em #fff1,
+    -0.125em 0 0.125em #5c6270 inset, 0 0.125em 0.125em #0004 inset,
+    0.125em 0 0.125em #0004 inset, 0 -0.125em 0.125em #5c6270 inset;
+}
+
+.room-nav #zoom {
+  left: 2em;
+  cursor: zoom-in;
+}
+.zoomed .room-nav #zoom {
+  cursor: zoom-out;
+}
+.room-nav #inv {
+  left: 4em;
+}
+.room-nav #hint {
+  left: 6em;
+}
+
+.room-nav #turnLeft {
+  left: 0;
+}
+
+.room-nav #turnRight {
+  right: 0;
+}
+
+.room-nav .hidden {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.room-nav button i {
+  font-family: "Noto Emoji", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1.65em;
+  transform: scale(0.9);
+}
+
+/*-- CUBE REUSABLE OBJECT --*/
+
+.cube {
+  width: var(--cubescale);
+  height: var(--cubescale);
+  position: absolute;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.cube > div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: auto;
+  background-image: url("https://assets.codepen.io/5896374/crate-box.jpg");
+  background-size: cover;
+  box-shadow: inset 0 0 calc(0.25 * var(--cubescale)) rgba(0, 0, 0, 0.5),
+    inset 0 0 calc(0.15 * var(--cubescale)) 0.1em rgba(0, 0, 0, 0.25);
+  border: 2px solid #352a23;
+}
+
+.cube-top {
+  transform: rotateX(90deg) translateZ(calc(var(--cubescale) / 2));
+  background-color: rgba(255, 0, 0, 0.7);
+}
+
+.cube-bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--cubescale) / 2));
+  background-color: rgba(0, 255, 0, 0.7);
+}
+
+.cube-front {
+  transform: translateZ(calc(var(--cubescale) / 2));
+  background-color: rgba(0, 0, 255, 0.7);
+}
+
+.cube-back {
+  transform: rotateY(180deg) translateZ(calc(var(--cubescale) / 2));
+  background-color: rgba(255, 255, 0, 0.7);
+}
+
+.cube-left {
+  transform: rotateY(-90deg) translateZ(calc(var(--cubescale) / 2));
+  background-color: rgba(0, 255, 255, 0.7);
+}
+
+.cube-right {
+  transform: rotateY(90deg) translateZ(calc(var(--cubescale) / 2));
+  background-color: rgba(255, 0, 255, 0.7);
+}
+
+.cube-1 {
+  bottom: 0;
+  transform: translateZ(calc(var(--depth) - calc(0.5 * var(--cubescale))));
+}
+.cube-2 {
+  bottom: 0;
+  transform: translateZ(calc(var(--depth) - calc(0.55 * var(--cubescale))))
+    translateX(calc(1.05 * var(--cubescale))) rotateY(-5deg);
+}
+.cube-3 {
+  bottom: 0;
+  transform: translateZ(calc(var(--depth) - calc(1.65 * var(--cubescale))))
+    rotateY(-2deg);
+}
+.cube-4 {
+  bottom: var(--cubescale);
+  transform: translateZ(calc(var(--depth) - calc(0.65 * var(--cubescale))))
+    translateX(calc(0.15 * var(--cubescale))) rotateY(-12deg);
+}
+.cube-5 {
+  --cubescale: 30vmin;
+  right: 0;
+  bottom: 0;
+  transform: translateZ(calc(var(--depth) - calc(0.5 * var(--cubescale))));
+}
+.cube-6 {
+  bottom: calc(2 * var(--cubescale));
+  right: calc(0.5 * var(--cubescale));
+  transform: translateZ(calc(var(--depth) - var(--cubescale))) rotateY(-15deg);
+  --cubescale: 15vmin;
+}
+.cube-7 {
+  bottom: 0;
+  transform: translateZ(calc(var(--depth) - calc(0.75 * var(--cubescale))))
+    rotateY(12deg);
+  left: calc(100% - calc(2.75 * var(--cubescale)));
+}
+
+/*-- OBJECTS --*/
+
+[data-comment] {
+  cursor: pointer;
+}
+
+.face {
+  transform: rotate(0deg);
+}
+.left-view .face {
+  transform: rotateY(90deg);
+}
+.right-view .face {
+  transform: rotateY(-90deg);
+}
+
+.flat {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  filter: drop-shadow(0 2vmin 4vmin rgba(0, 0, 0, 0.5));
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.lamp {
+  background-image: url("https://assets.codepen.io/5896374/lamp.png");
+  background-size: contain;
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: calc(var(--depth) * 0.5);
+  height: calc(var(--depth) * 0.5);
+  pointer-events: none;
+  left: calc(50% - calc(var(--depth) * 0.25));
+  transform-origin: top center;
+}
+
+.fan {
+  width: 8px;
+  height: 10vmin;
+  background: #222;
+  left: calc(50% - 4px);
+  transform-origin: top center;
+  animation: fanSpin 5s linear infinite;
+  transition: all 0.3s ease;
+}
+.fan.active {
+  height: 25vmin;
+}
+.fan::after,
+.fan::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  transform: rotateY(60deg);
+}
+.fan::before {
+  transform: rotateY(-60deg);
+}
+
+.blades {
+  position: absolute;
+  left: calc((-0.25 * var(--depth)) + 4px);
+  top: 100%;
+  width: calc(0.5 * var(--depth));
+  height: calc(0.5 * var(--depth));
+  transform: rotateX(90deg) translateY(-50%);
+  transform-origin: top center;
+  background-image: url("https://assets.codepen.io/5896374/fan-blades.png");
+  background-position: center;
+  background-size: contain;
+  border-radius: 100%;
+}
+
+@keyframes fanSpin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.room .outside {
+  position: absolute;
+  top: -50vh;
+  right: -10%;
+  width: 400vw;
+  height: 200vh;
+  background-color: #111;
+  background-image: url("https://assets.codepen.io/5896374/shack-mountain.jpg");
+  background-size: 150vmin;
+  background-position: center;
+  background-repeat: repeat;
+  transform: rotateY(90deg);
+  pointer-events: none;
+  backface-visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.outside.night {
+  opacity: 0;
+  background-image: url("https://cybersandbox.ca/wp-content/uploads/2021/11/the-eye.gif");
+  right: 10%;
+}
+
+.dark .outside.day {
+  opacity: 0;
+  right: 10%;
+}
+
+.dark .outside.night {
+  opacity: 1;
+  right: -10%;
+}
+
+.front-view .outside {
+  transform: rotateY(135deg);
+}
+.back-view .outside {
+  transform: rotateY(60deg);
+  background-position: center left;
+}
+
+.front-view .outside.night,
+.back-view .outside.night {
+  background-position: center;
+  transform: rotateY(90deg);
+}
+
+#room:not(.dark) .porthole.night,
+.room.dark .porthole.day {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.porthole {
+  width: 50vmin;
+  height: 50vmin;
+  background-image: url("https://assets.codepen.io/5896374/porthole-2.png");
+  background-size: contain;
+  background-position: center;
+  top: calc(50% - 25vmin);
+  right: 99%;
+  transform: rotateY(90deg) rotateZ(0) translateX(50%);
+  transform-origin: center right;
+  border-radius: 100%;
+  backface-visibility: hidden;
+  filter: contrast(0.85) saturate(3);
+  transition: all 0.3s ease;
+}
+
+.dark .porthole {
+  transform: rotateY(90deg) rotateZ(90deg) translateX(50%);
+}
+
+.right-view .porthole {
+  top: 100%;
+}
+
+.room .cage-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom center;
+  transform: translateZ(calc(-0.65 * var(--depth)));
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease !important;
+  z-index: 12;
+}
+
+.cage {
+  position: absolute;
+  bottom: -3%;
+  width: calc(0.5 * var(--depth));
+  left: 15%;
+  height: 70vmin;
+  transform-origin: bottom center;
+  background-image: url("https://assets.codepen.io/5896374/cage-2023.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  transition: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.dark .cage {
+  filter: brightness(1) contrast(1) drop-shadow(0 0 0) hue-rotate(180deg);
+}
+
+.hover {
+  transition: all 0.3s ease;
+  filter: brightness(1) contrast(1) drop-shadow(0 0 0);
+}
+
+.hover:hover {
+  filter: brightness(1.15) contrast(1.15) drop-shadow(0 4px 8px red);
+}
+
+.dark .cage:hover {
+  filter: brightness(1.15) contrast(1.15) drop-shadow(0 4px 8px red)
+    hue-rotate(180deg);
+}
+
+.right-view .cage-wrap,
+.front-view .cage-wrap {
+  pointer-events: none;
+  top: 100%;
+  left: 0;
+  visibility: hidden;
+}
+
+.door {
+  width: 25%;
+  height: 75%;
+  background-image: url("https://assets.codepen.io/5896374/old-door_1.png");
+  background-position: bottom center;
+  bottom: 0;
+  left: 20%;
+  transform: translateZ(2vmin);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.door.inner {
+  transform: translateZ(0);
+  filter: brightness(0.5);
+}
+
+.grate {
+  background-image: url("https://assets.codepen.io/5896374/metal-grate.png");
+  width: 16vmin;
+  height: 16vmin;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: calc(50% - 8vmin);
+  left: calc(50% - 8vmin);
+  filter: brightness(0.9) contrast(1.15);
+  border-radius: 100%;
+  z-index: 3;
+  transform: translateZ(2px);
+}
+
+.grate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  z-index: 3;
+}
+
+.grate::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  background: #111;
+  border-radius: 100%;
+}
+
+.switch {
+  width: 7vmin;
+  height: 9vmin;
+  background-image: url("https://assets.codepen.io/5896374/light-switch.png");
+  bottom: 36vmin;
+  left: 50%;
+  cursor: pointer;
+}
+
+.switch.night {
+  transform: rotate(180deg);
+}
+
+#room:not(.dark) .switch.night {
+  display: none;
+}
+
+.dark .switch.day {
+  display: none;
+}
+
+.front-view .wall-back .switch,
+.front-view .wall-back .door {
+  bottom: -100%;
+}
+
+/*-- SHELF --*/
+
+.cube.shelf {
+  --cubescale: 35vmin;
+  left: calc(0.5 * var(--cubescale));
+  bottom: 0;
+  width: var(--cubescale);
+  height: calc(1.75 * var(--cubescale));
+  transform-style: preserve-3d;
+  filter: unset;
+  transform: translateZ(10vmin);
+  transition: all 0.3s ease;
+}
+
+.left-view .wall-left .shelf {
+  bottom: -100%;
+}
+
+.cube.shelf .cube > div,
+.cube.shelf > div {
+  transform-style: preserve-3d;
+  filter: unset;
+  background-size: var(--cubescale) auto;
+  border: 2px solid #111;
+}
+
+.shelf-level > div:not(.item),
+.cube.shelf > div {
+  background-image: url("https://assets.codepen.io/5896374/old-wood-texture.jpg");
+}
+
+.cube.shelf .shelf-level,
+.cube.shelf > .cube-top,
+.cube.shelf > .cube-bottom {
+  height: calc(0.5 * var(--cubescale));
+}
+
+.cube.shelf > .cube-left,
+.cube.shelf > .cube-right {
+  width: calc(0.5 * var(--cubescale));
+}
+
+.shelf-level > .cube-left,
+.cube.shelf > .cube-left {
+  transform: rotateY(-90deg) translateZ(calc(0.25 * var(--cubescale)));
+}
+
+.shelf-level > .cube-right,
+.cube.shelf > .cube-right {
+  transform: rotateY(90deg) translateZ(calc(0.75 * var(--cubescale)));
+}
+
+.shelf-level > .cube-top,
+.cube.shelf > .cube-top {
+  transform: rotateX(90deg) translateZ(calc(0.25 * var(--cubescale)));
+}
+
+.shelf-level > .cube-bottom,
+.cube.shelf > .cube-bottom {
+  transform: rotateX(-90deg) translateZ(calc(1.5 * var(--cubescale)));
+  background-color: rgba(0, 255, 0, 0.7);
+}
+
+.shelf-level > .cube-back,
+.cube.shelf > .cube-back {
+  transform: translateZ(calc(-0.25 * var(--cubescale)));
+  width: var(--cubescale);
+}
+
+.shelf-level > .cube-front,
+.cube.shelf > .cube-front {
+  transform: translateZ(calc(0.25 * var(--cubescale)));
+}
+
+.cube.shelf > .cube-front {
+  background: transparent;
+  box-shadow: unset;
+  border: calc(0.05 * var(--cubescale)) solid #241d13;
+  pointer-events: none;
+}
+
+.cube.shelf > .shelf-level {
+  height: calc(0.05 * var(--cubescale));
+  background: unset !important;
+  box-shadow: unset;
+  border: none;
+}
+
+.cube.shelf > .shelf-level > .cube-right,
+.cube.shelf > .shelf-level > .cube-left {
+  width: calc(0.5 * var(--cubescale));
+}
+
+.cube.shelf > .shelf-level > .cube-top,
+.cube.shelf > .shelf-level > .cube-bottom {
+  height: calc(0.5 * var(--cubescale));
+}
+
+.cube.shelf > .shelf-level > .cube-bottom {
+  transform: rotateX(90deg) translateZ(calc(0.2 * var(--cubescale)));
+}
+
+.cube.shelf > .shelf-level .cube-back {
+  display: none;
+}
+
+.cube.shelf .level-1 {
+  transform: translateY(calc(0.575 * var(--cubescale)));
+}
+.cube.shelf .level-2 {
+  transform: translateY(calc(1.15 * var(--cubescale)));
+}
+.cube.shelf .level-3 {
+  transform: translateY(calc(1.7 * var(--cubescale)));
+}
+
+.cube .shelf-level > .item {
+  width: 10vmin;
+  height: 10vmin;
+  transform: rotateZ(90deg)
+    translateX(calc(-1 * (calc(50% + calc(0.05 * var(--cubescale))))))
+    translateY(100%);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform-origin: bottom center;
+  border: none !important;
+  box-shadow: unset;
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-image: unset;
+}
+
+.cube .shelf-level > .item-cube {
+  --itemscale: 10vmin;
+  width: var(--itemscale);
+  height: var(--itemscale);
+  transform-origin: bottom center;
+}
+
+.cube .shelf-level > .left-cube {
+  left: 30%;
+}
+.cube .shelf-level > .right-cube {
+  left: unset;
+  right: 0;
+}
+
+.shelf-level .item > .cube {
+  --cubescale: var(--itemscale);
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: rotateX(-90deg) rotateZ(-90deg);
+}
+.item > .cube > .cube-back {
+  display: block !important;
+}
+
+.cube.cobblestone > div {
+  background-image: url("https://assets.codepen.io/5896374/cobble.png");
+  border: none !important;
+}
+.cube.minecraft > div {
+  background-image: url("https://assets.codepen.io/5896374/grass-side.png");
+  border: none !important;
+}
+.cube.minecraft > .cube-top {
+  background-image: url("https://assets.codepen.io/5896374/grass-top.png");
+}
+.cube.minecraft > .cube-bottom {
+  background-image: url("https://assets.codepen.io/5896374/grass-bottom.png");
+}
+
+.item .item-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.shelf .item .item-inner {
+  transform: rotate(-90deg);
+}
+
+.item:hover .item-inner {
+  filter: drop-shadow(0 3px 6px red) brightness(1.25) contrast(1.25)
+    saturate(1.25);
+  margin-left: -7%;
+}
+
+.scraps > .item-inner {
+  background-image: url("https://assets.codepen.io/5896374/scraps.gif");
+}
+
+.shelf-level .item.milk {
+  width: 15vmin;
+  height: 15vmin;
+  left: 25%;
+}
+
+.milk > .item-inner {
+  background-image: url("https://gamer.church/wp-content/uploads/2024/12/milk-bottle.gif");
+}
+
+.shelf-level .item.gift {
+  width: 9vmin;
+  height: 9vmin;
+  left: 25%;
+}
+
+.gift > .item-inner {
+  background-image: url("https://gamer.church/wp-content/uploads/2024/12/gift-spin.gif");
+}
+
+.shelf-level .item.book {
+  width: 12vmin;
+  height: 12vmin;
+  left: 75%;
+}
+
+.book > .item-inner {
+  background-image: url("https://gamer.church/wp-content/uploads/2024/12/book-spin.gif");
+}
+
+.shelf-level .item.mod {
+  width: 8vmin;
+  height: 8vmin;
+  left: 75%;
+}
+
+.inventory .item > .item-inner {
+  background-size: 60%;
+  background-position: center;
+}
+
+.inventory .item-inner {
+  margin: 0 !important;
+}
+
+.mod > .item-inner {
+  background-image: url("https://gamer.church/wp-content/uploads/2024/12/mod-spin.gif");
+}
+
+.vhs > .item-inner {
+  background-image: url("https://gamer.church/wp-content/uploads/2024/12/vhs-tape.gif");
+}
+
+#tooltip {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  transition: top 0.1s ease, left 0.1s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+#tooltip span {
+  color: white;
+  border: 1px solid;
+  background: rgba(0, 0, 0, 0.5);
+  display: block;
+  width: max-content;
+  max-width: 50vw;
+  padding: 0.5em 0.75em;
+  line-height: 1.5em;
+  font-size: clamp(11px, 2vw, 16px);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  pointer-events: none;
+  transition: all 0.15s steps(3);
+  opacity: 0;
+}
+.overlay.zoom {
+  background: radial-gradient(
+    circle,
+    rgba(0, 10, 20, 0) 70%,
+    rgba(0, 10, 20, 1) 100%
+  );
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+.zoomed .overlay.zoom {
+  opacity: 0.85;
+}
+.overlay.inv-bg {
+  background: black;
+}
+.inv-open .overlay.inv-bg {
+  opacity: 0.5;
+}
+.overlay.darkness {
+  background: #102034;
+  mix-blend-mode: multiply;
+}
+.dark .overlay.darkness {
+  opacity: 0.6;
+}
+.overlay.darkness::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://assets.codepen.io/5896374/bg-noise-min.jpg");
+  background-size: 400px;
+  background-position: 400px;
+  animation: fuzz 1s steps(6) infinite;
+  opacity: 0.25;
+}
+@keyframes fuzz {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: -150px 150px;
+  }
+  100% {
+    background-position: 250px 250px;
+  }
+}
+
+.inventory-wrap {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: grid;
+  align-content: center;
+  bottom: 100%;
+  transition: all 0.5s ease;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.inv-open .inventory-wrap {
+  opacity: 1;
+  bottom: 0;
+  pointer-events: auto;
+}
+
+.inventory {
+  max-width: 90vw;
+  width: 600px;
+  margin: auto;
+  padding: 4vmin;
+  color: #ddd;
+  color: rgba(200, 200, 200, 0.5);
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid;
+  box-shadow: 3px 3px 0 #111, 4px 4px 0, 0 1em 3em rgba(0, 0, 0, 0.5);
+}
+
+.inventory h3 {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+#invGrid {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0.75em;
+  list-style: none;
+}
+
+#invGrid > li {
+  border: 1px solid;
+  transition: all 0.3s ease;
+  width: 100%;
+  padding: 1em;
+  margin: 0;
+  box-shadow: 0px 0px 0 #111, 1px 1px 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+  min-height: 30px;
+}
+
+#invGrid > li:hover {
+  color: #eee;
+  box-shadow: 3px 3px 0 #111, 4px 4px 0;
+  transform: translate(-4px, -4px);
+}
+
+@media (max-width: 500px) {
+  #invGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+#itemCur {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/*Dialog/Comments*/
+
+#dialog {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  color: white;
+  padding: 1em;
+  display: grid;
+  align-content: end;
+  text-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#dialog > div {
+  max-width: max-content;
+  width: 100%;
+  pointer-events: auto;
+  border: 1px solid black;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.75em 1em;
+  margin-bottom: 0.5em;
+  font-size: 0.85em;
+  line-height: 1.5em;
+}
+
+#dialog > div:hover {
+  opacity: 0.8;
+}
+
+#dialog q {
+  font-style: italic;
+}
+
+#dialog .hint {
+  font-style: italic;
+  color: gold;
+}
+
+.green {
+  color: limegreen;
+}
+.red {
+  color: #ff6150;
+}
